@@ -67,7 +67,7 @@ Home Screen Gallery Section
 ![Home Screen Gallery Section](screenshots/home_gallareytab.png?raw=true "Home Screen Gallery Section")
 
 Home Screen Following Section
-![Home Screen Following Section](screenshots/following tab.png?raw=true "Home Screen Following Section")
+![Home Screen Following Section](screenshots/following_tab.png?raw=true "Home Screen Following Section")
 
 Navigation Bar
 ![Navigation Bar](screenshots/sidebar.png?raw=true "Navigation Bar")
