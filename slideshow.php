@@ -6,7 +6,7 @@ if (isset($_GET['v'])) {
 
 <?php
 session_start();
-$con = mysqli_connect('localhost', 'root', '') or die();
+$con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die();
 $db = mysqli_select_db($con, 'pixlr') or die();
 
 //$id = $_GET['new_id_view'];

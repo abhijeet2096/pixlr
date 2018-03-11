@@ -250,7 +250,7 @@ if (isset($_GET['v'])) {
                                     <h3 class="flex-item" class="h1-responsive">Explore</h3>
                                 </li>
                                 <li>
-                                    <a  href="http://localhost/photo/home.php" class="btn btn-primary btn-lg">Home</a>
+                                    <a  href="http://localhost/pixlr/home.php" class="btn btn-primary btn-lg">Home</a>
                                 </li>
 
                             </ul>

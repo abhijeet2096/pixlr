@@ -1,7 +1,7 @@
 <!--**************************************     Database connection    ***************************-->
 <?php
 session_start();
-$con = mysqli_connect('localhost', 'root', '') or die();
+$con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die();
 $db = mysqli_select_db($con, 'pixlr') or die();
 // You can set the value however you like.
 $id = $_GET['new_id_view'];
@@ -118,12 +118,12 @@ $gallery_id = $_GET['galleryid'];
                         if (isset($_SESSION['new_id'])) {
                             echo'
                         <a class="mdl-navigation__link show-modal" href="#!" id=tt3  style="position:relative;margin:395px;outline: none;" >
-                            <img   style="outline: none;align:left;display: inline;" width="38px" height="38px" src="/photo1/images/upload.png" class="img-fluid" alt=""> Upload
+                            <img   style="outline: none;align:left;display: inline;" width="38px" height="38px" src="/pixlr/images/upload.png" class="img-fluid" alt=""> Upload
                         </a>';
                         } else
                             echo'
                         <a class="mdl-navigation__link disable" href="#!"  id=tt3  style="position:relative;margin-right:395px;outline: none;" >
-                            <img   style="outline: none;align:left;display: inline;" width="38px" height="38px" src="/photo1/images/upload.png" class="img-fluid" alt=""> Upload
+                            <img   style="outline: none;align:left;display: inline;" width="38px" height="38px" src="/pixlr/images/upload.png" class="img-fluid" alt=""> Upload
                         </a>';
                         ?>
                         <div class="mdl-tooltip" data-mdl-for="tt3">Upload Image</div>
@@ -317,7 +317,7 @@ $gallery_id = $_GET['galleryid'];
                         if ($profileimage != NULL)
                             echo' <img style = "width: 40px; height: 40px; border-radius: 100%;padding: 3px; " src = "data:image/jpeg;base64,' . base64_encode($profileimage) . '" class = "img-fluid" alt = "">';
                         else
-                            echo' <img style = "width: 40px; height: 40px; border-radius: 100%;padding: 0.6px;" src = "/photo2/images/default_profile.jpg" class = "img-fluid" alt = "">';
+                            echo' <img style = "width: 40px; height: 40px; border-radius: 100%;padding: 0.6px;" src = "/pixlr/images/default_profile.jpg" class = "img-fluid" alt = "">';
 
                         echo'
                         </div>
@@ -390,7 +390,7 @@ $gallery_id = $_GET['galleryid'];
                         if ($profileimage != NULL)
                             echo' <img style = "width: 50px; height: 50px; border-radius: 100%;padding: 3px; " src = "data:image/jpeg;base64,' . base64_encode($profileimage) . '" class = "img-fluid" alt = "">';
                         else
-                            echo' <img style = "width: 50px; height: 50px; border-radius: 100%;padding: 0.4px;" src = "/photo2/images/default_profile.jpg" class = "img-fluid" alt = "">';
+                            echo' <img style = "width: 50px; height: 50px; border-radius: 100%;padding: 0.4px;" src = "/pixlr/images/default_profile.jpg" class = "img-fluid" alt = "">';
 
                         echo '   </div>
 
@@ -444,7 +444,7 @@ $gallery_id = $_GET['galleryid'];
                         //$ _SESSION['img_id'] = $img_id_comment;
 
 
-                        $con2 = mysqli_connect('localhost', 'root', '') or die();
+                        $con2 = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die();
                         $db2 = mysqli_select_db($con2, 'pixlr') or die();
 
                         //echo $img_id;
@@ -471,7 +471,7 @@ $gallery_id = $_GET['galleryid'];
                                 if ($row1['profile_image'] != NULL)
                                     echo '<img src = "data:image/jpeg;base64,' . base64_encode($row1['profile_image']) . '" class = "img-fluid" alt = ""style = "width: 40px; height: 40px; border-radius: 100%;padding: 3px;"/>';
                                 else
-                                    echo '<img src = "/photo2/images/default_profile.jpg" class = "img-fluid" alt = ""style = "width: 40px; height: 40px; border-radius: 100%;padding: 2px;"/>';
+                                    echo '<img src = "/pixlr/images/default_profile.jpg" class = "img-fluid" alt = ""style = "width: 40px; height: 40px; border-radius: 100%;padding: 2px;"/>';
                                 //echo' <img id = tt1 style = "width: 32px; height: 32px; border-radius: 100%;padding: 2px;" src = "" class = "img-fluid" alt = "">';
                                 echo'
                                             </div>
@@ -538,11 +538,11 @@ $gallery_id = $_GET['galleryid'];
                         $row = mysqli_fetch_array($query);
                         if ($row) {
                             //$query = mysqli_query($con,"DELETE FROM 'r_like' WHERE mem_id='$id' AND img_id='$img_id'");
-                            $path = "/photo2/images/2000px-Love_Heart_SVG.png";
+                            $path = "/pixlr/images/2000px-Love_Heart_SVG.png";
                             $key=1;
                         } else {
                             //$query = mysqli_query($con,"INSERT INTO `r_like` VALUES('$id','$img_id','')");
-                            $path = "/photo2/images/2000px-Love_Heart_SVGcopy.png";
+                            $path = "/pixlr/images/2000px-Love_Heart_SVGcopy.png";
                             $key=0;
                         }
 
@@ -880,13 +880,13 @@ $gallery_id = $_GET['galleryid'];
               function like(prsn, img, key) {
                         var id = prsn + "_" + img;
                         $.get("q3.php", {"image_id_like": img, "person_id": prsn}, function (reply) {
-                            if ($("img[id='" + id + "']").attr("src") == "/photo2/images/2000px-Love_Heart_SVG.png") {
-                                $("img[id='" + id + "']").attr({"src": "/photo2/images/2000px-Love_Heart_SVGcopy.png"});
+                            if ($("img[id='" + id + "']").attr("src") == "/pixlr/images/2000px-Love_Heart_SVG.png") {
+                                $("img[id='" + id + "']").attr({"src": "/pixlr/images/2000px-Love_Heart_SVGcopy.png"});
                                 var x = $("h3[id='" + id + "']").text();
                                 var y = ((parseInt(x)) - 1).toString();
                                 $("h3[id='" + id + "']").html(y);
                             } else {
-                                $("img[id='" + id + "']").attr("src", "/photo2/images/2000px-Love_Heart_SVG.png");
+                                $("img[id='" + id + "']").attr("src", "/pixlr/images/2000px-Love_Heart_SVG.png");
                                 var x = $("h3[id='" + id + "']").html();
                                 var y = ((parseInt(x)) + 1).toString();
                                 $("h3[id='" + id + "']").html(y);

@@ -3,7 +3,7 @@
 session_start();
  $searchtext = $_POST['searchBox'];
 $id = $_SESSION['new_id'];
-$con = mysqli_connect('localhost', 'root', '') or die();
+$con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die();
 $db = mysqli_select_db($con, 'pixlr') or die();
  $sql = "SELECT * FROM member WHERE fname LIKE '%$searchtext%' or lname LIKE '%$searchtext%' or email = '$searchtext' or contact LIKE '%$searchtext%' or concat_ws(' ',fname,lname) LIKE '%$searchtext%'";
 $sth = mysqli_query($con, $sql);

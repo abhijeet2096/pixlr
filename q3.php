@@ -25,7 +25,7 @@ function admin_signin()
     echo $password = $_POST["password"];
     //$salt = "encrypt_it";
     //$password = md5($password.$salt);
-    $con=mysqli_connect('localhost','root','') or die("Failed to connect to SQL DB: ");
+    $con=mysqli_connect('localhost','root','Jigyasha#$') or die("Failed to connect to SQL DB: ");
     $db=mysqli_select_db($con,'pixlr') or die("Failed to connect to SQL DB: ");
     $query = mysqli_query($con,"SELECT * FROM admin WHERE admin_mail = '$email'");
     $row = mysqli_fetch_array($query);
@@ -45,7 +45,7 @@ function admin_signin()
 function status()           //add to admin page
 {
       $mem_id = $_GET['mem_id'];
-            $con=mysqli_connect('localhost','root','') or die("Failed to connect to SQL DB: ");
+            $con=mysqli_connect('localhost','root','Jigyasha#$') or die("Failed to connect to SQL DB: ");
     $db=mysqli_select_db($con,'pixlr') or die("Failed to connect to SQL DB: ");
     $query = mysqli_query($con,"SELECT * FROM member WHERE mem_id = '$mem_id'");
    	$row = mysqli_fetch_array($query);
@@ -65,7 +65,7 @@ function status()           //add to admin page
         function SignUp() {
             echo "In signup";
 
-            $con = mysqli_connect('localhost', 'root', '') or die("Failed to connect to SQL DB: ");
+            $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die("Failed to connect to SQL DB: ");
             $db = mysqli_select_db($con, 'pixlr') or die("Failed to connect to SQL DB: ");
 
             $fname = $_POST['fname'];    //starting the session for user profile page
@@ -127,7 +127,7 @@ function status()           //add to admin page
             }
         }*/
         function SignIn() {
-            $con = mysqli_connect('localhost', 'root', '') or die("Failed to connect to SQL DB: ");
+            $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die("Failed to connect to SQL DB: ");
             $db = mysqli_select_db($con, "pixlr") or die("Failed to connect to SQL DB: ");
 
             $email = $_POST['email'];    //starting the session for user profile page
@@ -173,7 +173,7 @@ function status()           //add to admin page
                     $title = substr($title, 0, 25);
                 }
             }
-
+            echo $imagename;
 //Insert the image name and image content in image_table
 //!empty($imagename);
             if (1) {
@@ -182,38 +182,49 @@ function status()           //add to admin page
                 //echo $ext= GetImageExtension($imgtype);
                 echo $ext = ".jpeg";
                 $imagename = date("d-m-Y") . "-" . time() . $ext;
-                echo $target_path = "/photo2/images/" . $imagename;
+                echo $target_path = "/pixlr/images/" . $imagename;
+                try{
+                   // if (move_uploaded_file($_FILES['myimage']['tmp_name'], '/pixlr/images/' . $imagename)) {
+                    if (!move_uploaded_file( $_FILES['myimage']['tmp_name'], '/srv/http/pixlr/images/' . $imagename)) {
+                        throw new Exception('Could not move file');
+                        }
 
-                if (move_uploaded_file($_FILES['myimage']['tmp_name'], 'C:/xampp/htdocs/photo2/images/' . $imagename)) {
 
-                    echo "abhijeet";
-                    $con = mysqli_connect('localhost', 'root', '') or die();
-                    $db = mysqli_select_db($con, 'pixlr') or die();
 
-                    $date = date('Y-m-d H:i:s');
+                        echo "abhijeet";
+                        $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die();
+                        $db = mysqli_select_db($con, 'pixlr') or die();
 
-                    $sql = "SELECT * FROM image";
-                    $rdata = mysqli_query($con, $sql);
-                    while ($res = mysqli_fetch_array($rdata)) {
-                        $id = $res['img_id'];
-                        echo $id;
-                    }
-                    $id = $id + 1;
-                    //echo $id;
-                    $query = mysqli_query($con, "INSERT INTO image VALUES ('$id','$title','wq','$date',12,'$mem_id',12,'" . $target_path . "')");
-                    //echo $imagename;
-                    //mysql_query($query) or die();  //"error in $query == ----> ".mysql_error()
-                } else {
+                        $date = date('Y-m-d H:i:s');
 
-                    exit("Error While uploading image on the server");
-                }
+                        $sql = "SELECT * FROM image";
+                        $rdata = mysqli_query($con, $sql);
+                        while ($res = mysqli_fetch_array($rdata)) {
+                            $id = $res['img_id'];
+                            echo $id;
+                        }
+                        $id = $id + 1;
+                        //echo $id;
+                        $query = mysqli_query($con, "INSERT INTO image VALUES ('$id','$title','wq','$date',12,'$mem_id',12,'" . $target_path . "')");
+                        //echo $imagename;
+                        //mysql_query($query) or die();  //"error in $query == ----> ".mysql_error()
+                    
+                   }catch (Exception $e) {
+                    echo "abhijeet2";
+                    // die ('File did not upload: ' . $e->getMessage());
+                    exit("Error While uploading image on the server". $e->getMessage());
+                } 
+                //  else {
+
+                //     exit("Error While uploading image on the server");
+                // }
             }
             if (isset($_POST['category'])) {
                 echo "good";
                 echo $c = $_POST['category'];
                 echo "good";
 
-                $con = mysqli_connect('localhost', 'root', '') or die();
+                $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die();
                 $db = mysqli_select_db($con, 'pixlr') or die();
                 $query = mysqli_query($con, "INSERT INTO r_category VALUES ('$id','$c')");
             }
@@ -226,7 +237,7 @@ function status()           //add to admin page
             $id = $_SESSION['new_id'];
             //echo "dadfds".$id;
 
-            $con = mysqli_connect('localhost', 'root', '') or die("Failed to connect to SQL DB: ");
+            $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die("Failed to connect to SQL DB: ");
             $db = mysqli_select_db($con, 'pixlr') or die("Failed to connect to SQL DB: ");
 
             $imagename = $_FILES['myimage']['name'];
@@ -247,7 +258,7 @@ function status()           //add to admin page
             $id = $_SESSION['new_id'];
             //echo "dadfds".$id;
 
-            $con = mysqli_connect('localhost', 'root', '') or die("Failed to connect to SQL DB: ");
+            $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die("Failed to connect to SQL DB: ");
             $db = mysqli_select_db($con, 'pixlr') or die("Failed to connect to SQL DB: ");
 
             $imagename = $_FILES['myimage']['name'];
@@ -269,7 +280,7 @@ function status()           //add to admin page
             //echo "dadfds".$id;
             echo $newpassword = $_POST['password'];
 
-            $con = mysqli_connect('localhost', 'root', '') or die("Failed to connect to SQL DB: ");
+            $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die("Failed to connect to SQL DB: ");
             $db = mysqli_select_db($con, 'pixlr') or die("Failed to connect to SQL DB: ");
 
             //$imagename=$_FILES['myimage']['name']; 
@@ -295,7 +306,7 @@ function status()           //add to admin page
             echo $comments = $_POST['my_comment'];
             echo ' ';
             $com_id;
-            $con = mysqli_connect('localhost', 'root', '') or die("Failed to connect to SQL DB: ");
+            $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die("Failed to connect to SQL DB: ");
             $db = mysqli_select_db($con, 'pixlr') or die("Failed to connect to SQL DB: ");
             $sql = "SELECT * FROM r_comment";
             $rdata = mysqli_query($con, $sql);
@@ -341,7 +352,7 @@ function status()           //add to admin page
             $person_id = $_GET['person_id'];
             echo ' ';
             $com_id;
-            $con = mysqli_connect('localhost', 'root', '') or die("Failed to connect to SQL DB: ");
+            $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die("Failed to connect to SQL DB: ");
             $db = mysqli_select_db($con, 'pixlr') or die("Failed to connect to SQL DB: ");
             $sql = "SELECT *  FROM r_comment WHERE comment_id='$comment_id'";
             $rdata = mysqli_query($con, $sql);
@@ -378,7 +389,7 @@ function status()           //add to admin page
         }
 
         function like() {
-            $con = mysqli_connect('localhost', 'root', '') or die();
+            $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die();
             $db = mysqli_select_db($con, 'pixlr') or die();
 
             echo $redirect = $_GET['redirect'];
@@ -434,7 +445,7 @@ function status()           //add to admin page
         }
 
         function delete_image() {
-            $con = mysqli_connect('localhost', 'root', '') or die();
+            $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die();
             $db = mysqli_select_db($con, 'pixlr') or die();
 
 
@@ -469,7 +480,7 @@ function status()           //add to admin page
             echo " ";
             echo $following_id = $_GET['following_id'];
 
-            $con = mysqli_connect('localhost', 'root', '') or die();
+            $con = mysqli_connect('localhost', 'root', 'Jigyasha#$') or die();
             $db = mysqli_select_db($con, 'pixlr') or die();
 
             $query = mysqli_query($con, "SELECT *  FROM `r_follow` where follower = '$follower_id' AND following = '$following_id'");
